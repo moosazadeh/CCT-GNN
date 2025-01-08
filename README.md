@@ -1,10 +1,22 @@
-Data preprocessing:
+# Code:
+This is the source code for paper: CCGNN: Collaborative and Category-aware Graph Neural Networks for Session-based Recommendation Systems
 
-     Run preprocess_Tmall.py from datasets folder.
-     
-	Run find_neighbors.py
- 
-	    Run build_global_graph.py
+# Usage
+**Data preprocessing:** from datasets folder  
 
-To train and evaluate the model:
-     Run main.py
+```
+python preprocess_Tmall.py
+```
+
+**Train and evaluate the model:**
+```
+python find_neighbors.py
+```
+```
+python build_global_graph.py
+```
+```
+python main.py --dataset tmall
+```
+
+ # Citation
