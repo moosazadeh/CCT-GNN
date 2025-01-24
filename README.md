@@ -1,5 +1,5 @@
 # Code:
-This is the source code for paper: CCGNN: Collaborative and Category-aware Graph Neural Networks for Session-based Recommendation Systems
+This is the source code for paper: CCT-GNN: Collaborative Category and Time-aware Graph Neural Networks for Session-based Recommendation Systems
 
 # Usage
 **Data preprocessing:** from datasets folder  
