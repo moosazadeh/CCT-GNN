@@ -130,7 +130,7 @@ class CCT_GNN(Module):
         # Collaborative attentive session embedding
         coll_att_sess_emb = torch.sum(beta * coll_emb, 1)   
 
-        # Concatenate the embedding of all items and their corresponding categories
+        # Concatenate the embedding of each item and its corresponding brand and category.
         all_itm_emb = self.embedding.weight[1: self.num_total-self.num_cat+1]
         all_cat_emb = self.embedding(self.all_cats)
         all_itm_cat_emb = torch.cat([all_itm_emb, all_cat_emb],-1)
