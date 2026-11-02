@@ -56,8 +56,8 @@ def main():
     train_data = pickle.load(open('datasets/' + opt.dataset + '/train.txt', 'rb'))
     test_data = pickle.load(open('datasets/' + opt.dataset + '/test.txt', 'rb'))
     category = pickle.load(open('datasets/' + opt.dataset + '/category.txt', 'rb'))
-    global_train_adjs = pickle.load(open('datasets/' + opt.dataset +'/train_adjs'+yy+'.txt', 'rb'))
-    global_test_adjs = pickle.load(open('datasets/' + opt.dataset +'/test_adjs'+yy+'.txt', 'rb'))
+    global_train_adjs = pickle.load(open('datasets/' + opt.dataset +'/train_adjs.txt', 'rb'))
+    global_test_adjs = pickle.load(open('datasets/' + opt.dataset +'/test_adjs.txt', 'rb'))
     
     train_data = Data(train_data, category)
     test_data = Data(test_data, category)
@@ -66,7 +66,7 @@ def main():
     result_map = {}
 
     model = trans_to_cuda(CCT_GNN(opt, num_item, num_cat, num_total, category))
-    print('\n\n Edition: ', yy, '- Number of layers: ', str(opt.num_layer))
+    print('\n\n Edition: ', '- Number of layers: ', str(opt.num_layer))
     start = time.time()
     best_result_k10 = [0, 0]
     best_result_k20 = [0, 0]
@@ -87,7 +87,7 @@ def main():
         if mrr_k10 >= best_result_k10[1]:
             best_result_k10[1] = mrr_k10
             best_epoch_k10[1] = epoch
-            # flag_k10 = 1            
+            flag_k10 = 1            
         bad_counter_k10 += 1 - flag_k10
         print("\n")            
         print('\tRecall@10, MMR@10: \t%.4f\t%.4f' % (best_result_k10[0], best_result_k10[1]))
@@ -105,7 +105,7 @@ def main():
         print('\tRecall@20, MMR@20: \t%.4f\t%.4f' % (best_result_k20[0], best_result_k20[1]))
         
         result_map.update({epoch:[best_result_k20[0], best_result_k20[1]]})
-        pickle.dump(result_map, open('result-'+ yy + '.txt', 'wb'))
+        pickle.dump(result_map, open('result-.txt', 'wb'))
        
         if (bad_counter_k20 >= opt.patience):
             break
